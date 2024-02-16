@@ -24,6 +24,7 @@ class Like < ApplicationRecord
   belongs_to(:fan, class_name: "User", foreign_key: "fan_id")
 
   # Like#photo: returns a row from the photo table associated to this like by the photo_id column
+  belongs_to(:photo, class_name: "Photo", foreign_key: "photo_id")
 
   # def fan
   #   my_fan_id = self.fan_id
@@ -35,13 +36,13 @@ class Like < ApplicationRecord
   #   return the_user
   # end
 
-  def photo
-    my_photo_id = self.photo_id
+  # def photo
+  #   my_photo_id = self.photo_id
 
-    matching_photos = Photo.where({ :id => my_photo_id })
+  #   matching_photos = Photo.where({ :id => my_photo_id })
 
-    the_photo = matching_photos.at(0)
+  #   the_photo = matching_photos.at(0)
 
-    return the_photo
-  end
+  #   return the_photo
+  # end
 end
