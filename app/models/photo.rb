@@ -35,6 +35,8 @@ class Photo < ApplicationRecord
 
   # Photo#fans: returns rows from the users table associated to this photo through its likes
 
+  has_many(:fans, through: :likes, source: :fan)
+
   # def poster
   #   my_owner_id = self.owner_id
 
@@ -61,19 +63,19 @@ class Photo < ApplicationRecord
   #   return matching_likes
   # end
 
-  def fans
-    my_likes = self.likes
+  # def fans
+  #   my_likes = self.likes
     
-    array_of_user_ids = Array.new
+  #   array_of_user_ids = Array.new
 
-    my_likes.each do |a_like|
-      array_of_user_ids.push(a_like.fan_id)
-    end
+  #   my_likes.each do |a_like|
+  #     array_of_user_ids.push(a_like.fan_id)
+  #   end
 
-    matching_users = User.where({ :id => array_of_user_ids })
+  #   matching_users = User.where({ :id => array_of_user_ids })
 
-    return matching_users
-  end
+  #   return matching_users
+  # end
 
   def fan_list
     my_fans = self.fans
